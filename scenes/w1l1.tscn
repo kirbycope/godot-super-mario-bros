@@ -1,18 +1,18 @@
 [gd_scene load_steps=21 format=4 uid="uid://cyh4p4sg00gfk"]
 
-[ext_resource type="Texture2D" uid="uid://dsbv4ovf6tfei" path="res://assets/textures/smb/overworld-ground-and-stone.png" id="1_f5sq8"]
-[ext_resource type="Script" path="res://scenes/smb/w_1l_1.gd" id="1_km7ny"]
-[ext_resource type="Texture2D" uid="uid://3n4s6e7phini" path="res://assets/textures/smb/overworld-water-and-sky.png" id="2_rmfiu"]
-[ext_resource type="Texture2D" uid="uid://bplr56sfeo7ty" path="res://assets/textures/smb/overworld-pipes-and-scenery.png" id="3_fmm64"]
-[ext_resource type="Texture2D" uid="uid://cet1ie0mc5xuv" path="res://assets/textures/smb/overworld-coins.png" id="4_bjq44"]
-[ext_resource type="PackedScene" uid="uid://dww7g800yok36" path="res://scenes/smb/mystery-box.tscn" id="5_3sbcw"]
-[ext_resource type="Texture2D" uid="uid://cgjqngaotpigs" path="res://assets/textures/smb/underground-ground-and-stone.png" id="5_u5i6a"]
-[ext_resource type="Texture2D" uid="uid://bpiosieweiegm" path="res://assets/textures/smb/underground-pipes-and-scenery.png" id="6_molcd"]
-[ext_resource type="PackedScene" uid="uid://yuditfkct2vh" path="res://scenes/smb/coin.tscn" id="9_f7t2h"]
-[ext_resource type="PackedScene" uid="uid://v2fyqwwybi2w" path="res://scenes/smb/warp-pipe-a.tscn" id="9_uaif8"]
-[ext_resource type="PackedScene" uid="uid://boybltwu37f53" path="res://scenes/smb/warp-pipe-b.tscn" id="11_lr1dj"]
-[ext_resource type="PackedScene" uid="uid://cj4k7alcqgyv8" path="res://scenes/smb/goomba.tscn" id="12_r4vnb"]
-[ext_resource type="PackedScene" uid="uid://dfn5teb5f4sqb" path="res://scenes/smb/block.tscn" id="14_f7e1s"]
+[ext_resource type="Script" path="res://scenes/w_1l_1.gd" id="1_a30jt"]
+[ext_resource type="Texture2D" uid="uid://ct3jxgpe72fcy" path="res://assets/textures/smb/overworld-ground-and-stone.png" id="1_f5sq8"]
+[ext_resource type="Texture2D" uid="uid://dnq5nfvi7jpng" path="res://assets/textures/smb/overworld-water-and-sky.png" id="2_rmfiu"]
+[ext_resource type="Texture2D" uid="uid://c6u6s6uogpc8n" path="res://assets/textures/smb/overworld-pipes-and-scenery.png" id="3_fmm64"]
+[ext_resource type="Texture2D" uid="uid://bm2nwwd4fgllw" path="res://assets/textures/smb/overworld-coins.png" id="4_bjq44"]
+[ext_resource type="PackedScene" uid="uid://dww7g800yok36" path="res://scenes/mystery_box.tscn" id="5_3sbcw"]
+[ext_resource type="Texture2D" uid="uid://cmwc5wulav4qd" path="res://assets/textures/smb/underground-ground-and-stone.png" id="5_u5i6a"]
+[ext_resource type="Texture2D" uid="uid://dilrs4ulsuebl" path="res://assets/textures/smb/underground-pipes-and-scenery.png" id="6_molcd"]
+[ext_resource type="PackedScene" uid="uid://yuditfkct2vh" path="res://scenes/coin.tscn" id="9_f7t2h"]
+[ext_resource type="PackedScene" uid="uid://v2fyqwwybi2w" path="res://scenes/warp_pipe_a.tscn" id="9_uaif8"]
+[ext_resource type="PackedScene" uid="uid://boybltwu37f53" path="res://scenes/warp_pipe_b.tscn" id="11_lr1dj"]
+[ext_resource type="PackedScene" uid="uid://cj4k7alcqgyv8" path="res://scenes/goomba.tscn" id="12_r4vnb"]
+[ext_resource type="PackedScene" uid="uid://dfn5teb5f4sqb" path="res://scenes/block.tscn" id="14_f7e1s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u30iw"]
 texture = ExtResource("1_f5sq8")
@@ -268,7 +268,7 @@ sources/5 = SubResource("TileSetAtlasSource_mep0v")
 
 [node name="W1L1" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_km7ny")
+script = ExtResource("1_a30jt")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
@@ -288,197 +288,262 @@ tile_set = SubResource("TileSet_515rb")
 
 [node name="MysteryBox" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(264, 152)
+script = null
 
 [node name="Block" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(328, 152)
+script = null
 
 [node name="MysteryBox2" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(344, 152)
+script = null
 
 [node name="MysteryBox3" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(360, 88)
+script = null
 
 [node name="Block2" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(360, 152)
+script = null
 
 [node name="Goomba" parent="Overworld" instance=ExtResource("12_r4vnb")]
 position = Vector2(360, 200)
+script = null
 
 [node name="MysteryBox4" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(376, 152)
+script = null
 
 [node name="Block3" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(392, 152)
+script = null
 
 [node name="WarpPipeA" parent="Overworld" instance=ExtResource("9_uaif8")]
 position = Vector2(928, 140)
+script = null
 
 [node name="Block4" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1240, 152)
+script = null
 
 [node name="MysteryBox5" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(1256, 152)
+script = null
 
 [node name="Block5" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1272, 152)
+script = null
 
 [node name="Block6" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1288, 88)
+script = null
 
 [node name="Block7" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1304, 88)
+script = null
 
 [node name="Block8" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1320, 88)
+script = null
 
 [node name="Block9" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1336, 88)
+script = null
 
 [node name="Block10" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1352, 88)
+script = null
 
 [node name="Block11" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1368, 88)
+script = null
 
 [node name="Block12" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1384, 88)
+script = null
 
 [node name="Block13" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1400, 88)
+script = null
 
 [node name="Block14" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1464, 88)
+script = null
 
 [node name="Block15" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1480, 88)
+script = null
 
 [node name="Block16" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1496, 88)
+script = null
 
 [node name="MysteryBox6" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(1512, 88)
+script = null
 
 [node name="Block17" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1512, 152)
+script = null
 
 [node name="Block18" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1608, 152)
+script = null
 
 [node name="Block19" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1624, 152)
+script = null
 
 [node name="MysteryBox7" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(1704, 152)
+script = null
 
 [node name="MysteryBox8" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(1752, 88)
+script = null
 
 [node name="MysteryBox9" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(1752, 152)
+script = null
 
 [node name="MysteryBox10" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(1800, 152)
+script = null
 
 [node name="Block20" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1880, 152)
+script = null
 
 [node name="Block21" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1928, 88)
+script = null
 
 [node name="Block22" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1944, 88)
+script = null
 
 [node name="Block23" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(1960, 88)
+script = null
 
 [node name="Block24" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(2040, 88)
+script = null
 
 [node name="MysteryBox11" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(2056, 88)
+script = null
 
 [node name="Block25" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(2056, 152)
+script = null
 
 [node name="MysteryBox12" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(2072, 88)
+script = null
 
 [node name="Block26" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(2072, 152)
+script = null
 
 [node name="Block27" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(2088, 88)
+script = null
 
 [node name="Block28" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(2680, 152)
+script = null
 
 [node name="Block29" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(2696, 152)
+script = null
 
 [node name="MysteryBox13" parent="Overworld" instance=ExtResource("5_3sbcw")]
 position = Vector2(2712, 152)
+script = null
 
 [node name="Block30" parent="Overworld" instance=ExtResource("14_f7e1s")]
 position = Vector2(2728, 152)
+script = null
 
 [node name="Underground" type="Node2D" parent="."]
 
 [node name="Coin" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(152, 392)
+script = null
 
 [node name="Coin2" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(168, 392)
+script = null
 
 [node name="Coin3" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(184, 392)
+script = null
 
 [node name="Coin4" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(200, 392)
+script = null
 
 [node name="Coin5" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(216, 392)
+script = null
 
 [node name="Coin6" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(232, 392)
+script = null
 
 [node name="Coin7" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(248, 392)
+script = null
 
 [node name="Coin8" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(152, 376)
+script = null
 
 [node name="Coin9" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(168, 376)
+script = null
 
 [node name="Coin10" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(184, 376)
+script = null
 
 [node name="Coin11" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(200, 376)
+script = null
 
 [node name="Coin12" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(216, 376)
+script = null
 
 [node name="Coin13" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(232, 376)
+script = null
 
 [node name="Coin15" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(168, 360)
+script = null
 
 [node name="Coin16" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(184, 360)
+script = null
 
 [node name="Coin17" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(200, 360)
+script = null
 
 [node name="Coin18" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(216, 360)
+script = null
 
 [node name="Coin19" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(232, 360)
+script = null
 
 [node name="Coin14" parent="Underground" instance=ExtResource("9_f7t2h")]
 position = Vector2(248, 376)
+script = null
 
 [node name="WarpPipeB" parent="Underground" instance=ExtResource("11_lr1dj")]
 position = Vector2(284, 432)
+script = null

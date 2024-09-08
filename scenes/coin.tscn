@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://yuditfkct2vh"]
 
-[ext_resource type="Texture2D" uid="uid://cet1ie0mc5xuv" path="res://assets/textures/smb/overworld-coins.png" id="1_1ou3v"]
-[ext_resource type="Script" path="res://scenes/smb/coin.gd" id="2_r7jr6"]
+[ext_resource type="Texture2D" uid="uid://bm2nwwd4fgllw" path="res://assets/textures/smb/overworld-coins.png" id="1_1ou3v"]
+[ext_resource type="Script" path="res://scenes/coin.gd" id="2_7ylw4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qja8l"]
 atlas = ExtResource("1_1ou3v")
@@ -40,7 +40,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_e0omp")
 autoplay = "default"
 frame_progress = 0.273273
-script = ExtResource("2_r7jr6")
+script = ExtResource("2_7ylw4")
 
 [node name="Area2D" type="Area2D" parent="."]
 

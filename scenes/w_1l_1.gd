@@ -14,7 +14,7 @@ func _ready() -> void:
 func load_mario():
 
 	# Define the scene to load
-	var path = "res://scenes/player/player-2d.tscn"
+	var path = "res://scenes/player/player_2d.tscn"
 
 	# Load the scene
 	var scene = load(path)

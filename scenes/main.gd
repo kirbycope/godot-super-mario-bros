@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 	if !game_started:
 
 		# Check if the input is "start" or [Enter]
-		if event.is_action_pressed("start") or (event is InputEventKey and event.pressed and event.keycode == KEY_ENTER):
+		if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
 
 			# Start the game
 			start()
@@ -53,7 +53,7 @@ func start() -> void:
 		$Title.queue_free()
 
 		# Define next scene to load
-		var path = "res://scenes/smb/w1l1.tscn"
+		var path = "res://scenes/w1l1.tscn"
 
 		# Load the scene
 		var scene = load(path)
