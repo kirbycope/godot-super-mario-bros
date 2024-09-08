@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dww7g800yok36"]
+
+[ext_resource type="Texture2D" uid="uid://cet1ie0mc5xuv" path="res://assets/textures/smb/overworld-coins.png" id="1_jcbgg"]
+[ext_resource type="Script" path="res://scenes/smb/mystery-box.gd" id="2_vl5gs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivtqx"]
+atlas = ExtResource("1_jcbgg")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gay4"]
+atlas = ExtResource("1_jcbgg")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5xv0"]
+atlas = ExtResource("1_jcbgg")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0yqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivtqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gay4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5xv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gay4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp1bp"]
+size = Vector2(8, 2)
+
+[node name="MysteryBox" type="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_k0yqd")
+autoplay = "default"
+frame_progress = 0.252036
+script = ExtResource("2_vl5gs")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_jp1bp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

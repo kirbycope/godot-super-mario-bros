@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dis6vn31pen2d"]
+
+[ext_resource type="PackedScene" uid="uid://cpxbanj8hwjbf" path="res://scenes/title.tscn" id="2_t65wg"]
+
+[node name="Main" type="Node2D"]
+texture_filter = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+
+[node name="Title" parent="." instance=ExtResource("2_t65wg")]
