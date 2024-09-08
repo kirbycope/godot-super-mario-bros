@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=4 uid="uid://cyh4p4sg00gfk"]
 
-[ext_resource type="Script" path="res://scenes/w_1l_1.gd" id="1_a30jt"]
+[ext_resource type="Script" path="res://scenes/w1l1.gd" id="1_a30jt"]
 [ext_resource type="Texture2D" uid="uid://ct3jxgpe72fcy" path="res://assets/textures/smb/overworld-ground-and-stone.png" id="1_f5sq8"]
 [ext_resource type="Texture2D" uid="uid://dnq5nfvi7jpng" path="res://assets/textures/smb/overworld-water-and-sky.png" id="2_rmfiu"]
 [ext_resource type="Texture2D" uid="uid://c6u6s6uogpc8n" path="res://assets/textures/smb/overworld-pipes-and-scenery.png" id="3_fmm64"]
