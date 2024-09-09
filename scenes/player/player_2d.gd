@@ -183,7 +183,7 @@ func setup_controls():
 
 		# Controller [left-stick, right]
 		var joystick_event = InputEventJoypadMotion.new()
-		joystick_event.axis = JOY_AXIS_RIGHT_X
+		joystick_event.axis = JOY_AXIS_LEFT_X
 		joystick_event.axis_value = 1.0
 		InputMap.action_add_event("move_right", joystick_event)
 
