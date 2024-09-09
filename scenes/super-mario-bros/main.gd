@@ -53,7 +53,7 @@ func start() -> void:
 		$Title.queue_free()
 
 		# Define next scene to load
-		var path = "res://scenes/w1l1.tscn"
+		var path = "res://scenes/super-mario-bros/w1l1.tscn"
 
 		# Load the scene
 		var scene = load(path)
