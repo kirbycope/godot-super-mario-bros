@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://yuditfkct2vh"]
 
 [ext_resource type="Texture2D" uid="uid://bm2nwwd4fgllw" path="res://assets/textures/smb/overworld-coins.png" id="1_1ou3v"]
-[ext_resource type="Script" path="res://scenes/coin.gd" id="2_7ylw4"]
+[ext_resource type="Script" path="res://scenes/super-mario-bros/coin.gd" id="2_7ylw4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qja8l"]
 atlas = ExtResource("1_1ou3v")

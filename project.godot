@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Super Mario Bros."
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/super-mario-bros/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://scenes/globals.gd"
+Globals="*res://scenes/super-mario-bros/globals.gd"
 
 [display]
 

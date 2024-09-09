@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfn5teb5f4sqb"]
 
-[ext_resource type="Script" path="res://scenes/block.gd" id="1_2t8pa"]
+[ext_resource type="Script" path="res://scenes/super-mario-bros/block.gd" id="1_2t8pa"]
 [ext_resource type="Texture2D" uid="uid://ct3jxgpe72fcy" path="res://assets/textures/smb/overworld-ground-and-stone.png" id="1_ek8ae"]
 
 [sub_resource type="Animation" id="Animation_66o02"]

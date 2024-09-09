@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://v2fyqwwybi2w"]
 
-[ext_resource type="Script" path="res://scenes/warp_pipe_a.gd" id="1_e7x7w"]
+[ext_resource type="Script" path="res://scenes/super-mario-bros/warp_pipe_a.gd" id="1_e7x7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wycmb"]
 size = Vector2(32, 8)

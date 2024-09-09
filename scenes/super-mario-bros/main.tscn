@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dis6vn31pen2d"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_th52u"]
-[ext_resource type="PackedScene" uid="uid://cpxbanj8hwjbf" path="res://scenes/title.tscn" id="2_t65wg"]
+[ext_resource type="Script" path="res://scenes/super-mario-bros/main.gd" id="1_th52u"]
+[ext_resource type="PackedScene" uid="uid://cpxbanj8hwjbf" path="res://scenes/super-mario-bros/title.tscn" id="2_t65wg"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
