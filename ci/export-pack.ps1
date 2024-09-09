@@ -2,7 +2,8 @@
 
 $godot = "C:\Users\kirby\OneDrive\Desktop\Godot Game Engine.exe"
 $preset = "Web"
-$path = "C:\GitHub\godot-super-mario-bros\ci\godot-super-mario-bros.pck"
+$project = Split-Path -Path (Get-Location) -Leaf
+$path = "C:\GitHub\${project}\ci\${project}.pck"
 
 # Run Godot headless and export the project as a PCK file
 Start-Process -FilePath $godot -ArgumentList "--headless", "--export-pack $preset $path" -NoNewWindow -Wait
