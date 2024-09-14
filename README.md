@@ -51,3 +51,37 @@ The following is needed to work with GitHub Pages.
 1. Enter `index.html`
 1. Select "Save"
 1. Commit the code to trigger a GitHub Pages deployment (above)
+
+----
+
+## Sound
+This project uses the [godot-midi-player-g4](https://bitbucket.org/arlez80/godot-midi-player-g4/src/master/) developed by [arlez80](https://arlez80.net/).
+
+### Installation of godot-midi-player-g4
+1. Select "Download repository" from [BitBucket](https://bitbucket.org/arlez80/godot-midi-player-g4/downloads/)
+    1. The project is avaiable on the [Godot Asset Library](https://godotengine.org/asset-library/asset/1667) but is most up to date on BitBucket
+1. Open the archive and copy the `.../midi` folder to the `assets` folder of your project
+1. Open your project in Godot
+1. Select "Project > Project Settings... > Plugins"
+1. Check the "Enable" checkbox and close
+
+### Usage of godot-midi-player-g4
+After the plugin is enabled, you will find a new Node in the "Create New Node" window
+1. Select "+" to add a new node to your scene
+1. Scroll to or Search for "MidiPlayer (MidiPlayer.gd)"
+
+#### Code example
+```
+## Plays the given resource on the Midi player.
+func play_midi(resourse: String):
+	var midi_player = $MidiPlayer
+	midi_player.file = resourse
+	midi_player.play()
+```
+
+#### Adjusting export
+By default `.mid` and `.sf2` files are not imported by Godot.
+1. Select "Project > Export"
+1. Select the "Web (Runnable)" preset
+1. Select the "Resources" tab
+1. For "Filters to export non-resource files/folders", enter `*.mid,*.sf2`

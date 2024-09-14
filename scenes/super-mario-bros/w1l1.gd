@@ -8,7 +8,8 @@ func _ready() -> void:
 	load_mario()
 
 	# Play music
-	Globals.play_music("res://assets/sounds/smb/Overworld Theme.ogg")
+	#Globals.play_music("res://assets/sounds/smb/Overworld Theme.ogg")
+	Globals.play_midi("res://assets/sounds/smb/overworld.mid")
 
 
 func load_mario():

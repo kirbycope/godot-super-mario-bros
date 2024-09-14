@@ -58,6 +58,18 @@ func play_audio(resourse: String):
 	sfx_player.play()
 
 
+## Plays the given resource on the Midi player.
+func play_midi(resourse: String):
+	var midi_player = null
+	# Get sound player if app loaded from $Client
+	if client:
+		midi_player = client.get_node("Main").get_node("MidiPlayer")
+	else:
+		midi_player = main.get_node("MidiPlayer")
+	midi_player.file = resourse
+	midi_player.play()
+
+
 ## Plays the given resource on the Music player.
 func play_music(resourse: String):
 	var music_player = null

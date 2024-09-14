@@ -29,4 +29,5 @@ func go_down_pipe():
 	# Play sound effect
 	Globals.play_audio("res://assets/sounds/smb/Warp.wav")
 	# Play "Underground" music
-	Globals.play_music("res://assets/sounds/smb/Under Ground Theme.ogg")
+	#Globals.play_music("res://assets/sounds/smb/Under Ground Theme.ogg")
+	Globals.play_midi("res://assets/sounds/smb/underground.mid")

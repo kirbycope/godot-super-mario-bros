@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dis6vn31pen2d"]
+[gd_scene load_steps=4 format=3 uid="uid://dis6vn31pen2d"]
 
 [ext_resource type="Script" path="res://scenes/super-mario-bros/main.gd" id="1_th52u"]
 [ext_resource type="PackedScene" uid="uid://cpxbanj8hwjbf" path="res://scenes/super-mario-bros/title.tscn" id="2_t65wg"]
+[ext_resource type="Script" path="res://addons/midi/MidiPlayer.gd" id="3_x4orx"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_th52u")
+
+[node name="MidiPlayer" type="Node" parent="."]
+script = ExtResource("3_x4orx")
+volume_db = -10.0
+load_all_voices_from_soundfont = false
+soundfont = "res://assets/sounds/smb/Super_Mario_Bros._Soundfont.sf2"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 

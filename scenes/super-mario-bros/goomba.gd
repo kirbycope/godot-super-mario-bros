@@ -5,8 +5,8 @@ var player_in_bite_area: bool = false
 var player_in_stomp_area: bool = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+## Called every frame. '_delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
 	
 	# Check if there is a player collision to process
 	if player:
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 			# Vault the player off the goomba
 			player.velocity.y = -256
 			# Wait a moment
-			await get_tree().create_timer(0.4)
+			get_tree().create_timer(0.4)
 			# Remove the Goomba after playing the animation
 			queue_free()
 

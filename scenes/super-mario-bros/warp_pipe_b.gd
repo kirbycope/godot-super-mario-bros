@@ -29,4 +29,5 @@ func go_up_pipe():
 	# Play sound effect
 	Globals.play_audio("res://assets/sounds/smb/Warp.wav")
 	# Play "Overworld" music
-	Globals.play_music("res://assets/sounds/smb/Overworld Theme.ogg")
+	#Globals.play_music("res://assets/sounds/smb/Overworld Theme.ogg")
+	Globals.play_midi("res://assets/sounds/smb/overworld.mid")
