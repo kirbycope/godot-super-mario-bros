@@ -71,12 +71,17 @@ After the plugin is enabled, you will find a new Node in the "Create New Node" w
 1. Scroll to or Search for "MidiPlayer (MidiPlayer.gd)"
 
 #### Code example
+method:
 ```
 ## Plays the given resource on the Midi player.
 func play_midi(resourse: String):
 	var midi_player = $MidiPlayer
 	midi_player.file = resourse
 	midi_player.play()
+```
+invocation:
+```
+play_midi("res://assets/sounds/smb/overworld.mid")
 ```
 
 #### Adjusting export
