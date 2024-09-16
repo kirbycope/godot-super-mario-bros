@@ -111,12 +111,14 @@ func mangage_state() -> void:
 		if swipe_delta.length() < swipe_threshold:
 			# Check if the tap duration is under the threshold
 			if tap_duration < tap_time_threshold:
-				# Get the current time
-				var time_now = Time.get_ticks_msec() / 1000.0
-				# Check if the tap start is under the threshold
-				if time_now < tap_start_time + tap_time_threshold:
-					# Set the tap to "jump" flag
-					jump = true
+				# Check if swipe_start is on the right half of the screen
+				if swipe_start.x > get_viewport().get_visible_rect().size.x / 2:
+					# Get the current time
+					var time_now = Time.get_ticks_msec() / 1000.0
+					# Check if the tap start is under the threshold
+					if time_now < tap_start_time + tap_time_threshold:
+						# Set the tap to "jump" flag
+						jump = true
 
 		# [jump] button just _pressed_
 		if Input.is_action_just_pressed("jump") or jump:
