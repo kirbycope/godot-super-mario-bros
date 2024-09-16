@@ -322,21 +322,30 @@ func setup_controls():
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
 
+	# Create variable to hold the direction the player is moving (-1 left, 0 middle , 1 right)
+	var direction: float
+
 	# Check the direction of the drag
 	if drag_delta != Vector2(0.0, 0.0):
 		if abs(drag_delta.x) > abs(drag_delta.y):
 			if drag_delta.x > 0:
-				print("right")
+				direction = 1
 			else:
-				print("left")
+				direction = -1
 		else:
-			if drag_delta.y > 0:
-				print("down")
-			else:
-				print("up")
+			direction = 0
+			#if drag_delta.y > 0:
+			#	print("down")
+			#else:
+			#	print("up")
 	
-	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("move_left", "move_right") # -1 left, 0 middle , 1 right
+	# Check is the direction is not yet set
+	if !direction:
+
+		# Get the input direction and handle the movement/deceleration.
+		direction = Input.get_axis("move_left", "move_right")
+	
+	# Check if the move direction is set
 	if direction:
 		velocity.x = direction * speed
 		if direction < 0:
