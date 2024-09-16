@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var drag_delta: Vector2 = Vector2(0.0, 0.0)
 var is_jumping: bool = false
 var is_high_jumping: bool = false
 var swipe_delta: Vector2 = Vector2(0.0, 0.0)
@@ -42,6 +43,9 @@ func _input(event: InputEvent) -> void:
 		# [touch] screen just _released_
 		else:
 
+			# Reset drag delta
+			drag_delta = Vector2(0.0, 0.0)
+
 			# Record final touch position
 			var swipe_end = event.position
 
@@ -50,6 +54,15 @@ func _input(event: InputEvent) -> void:
 
 			# Calculate the difference from start and end times
 			tap_duration = Time.get_ticks_msec() / 1000.0 - tap_start_time
+
+	# Check if the input is a Drag event
+	if event is InputEventScreenDrag:
+
+		# Only proceed if the touch started on the left half of the screen
+		if swipe_start.x < get_viewport().get_visible_rect().size.x / 2:
+
+			# Record drag direction based on the relative movement
+			drag_delta = event.relative
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -309,6 +322,19 @@ func setup_controls():
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
 
+	# Check the direction of the drag
+	if drag_delta != Vector2(0.0, 0.0):
+		if abs(drag_delta.x) > abs(drag_delta.y):
+			if drag_delta.x > 0:
+				print("right")
+			else:
+				print("left")
+		else:
+			if drag_delta.y > 0:
+				print("down")
+			else:
+				print("up")
+	
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right") # -1 left, 0 middle , 1 right
 	if direction:
