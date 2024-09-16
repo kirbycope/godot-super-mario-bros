@@ -3,7 +3,6 @@ extends CharacterBody2D
 var drag_delta: Vector2 = Vector2(0.0, 0.0)
 var is_jumping: bool = false
 var is_high_jumping: bool = false
-var last_direction: float = 0.0
 var swipe_delta: Vector2 = Vector2(0.0, 0.0)
 var swipe_start: Vector2 = Vector2(0.0, 0.0)
 var swipe_threshold: float = 50.0
@@ -339,12 +338,6 @@ func update_velocity(delta: float) -> void:
 			#	print("down")
 			#else:
 			#	print("up")
-		# Store the last drag direction
-		last_direction = direction
-
-	# Use last direction if no new drag and touch is still pressed
-	if last_direction != 0.0 and drag_delta != Vector2(0.0, 0.0):
-		direction = last_direction
 
 	# Check is the direction is not yet set
 	if !direction:
