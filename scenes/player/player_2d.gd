@@ -2,7 +2,14 @@ extends CharacterBody2D
 
 var is_jumping: bool = false
 var is_high_jumping: bool = false
+var swipe_delta: Vector2 = Vector2(0.0, 0.0)
+var swipe_start: Vector2 = Vector2(0.0, 0.0)
+var swipe_threshold: float = 50.0
+var tap_duration: float = 0.0
+var tap_time_threshold: float = 0.3
+var tap_start_time: float = 0.0
 var timer_jump: float = 0.0
+
 
 # Note: `@export` variables are available for editing in the property editor.
 @export var high_jump_velocity = -300.0
@@ -15,6 +22,34 @@ func _exit_tree() -> void:
 
 	# [DEBUG] Message
 	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
+
+
+## Called when there is an input event. The input event propagates up through the node tree until a node consumes it.
+func _input(event: InputEvent) -> void:
+
+	# Check if the input is a Touch event
+	if event is InputEventScreenTouch:
+
+		# [touch] screen just _pressed_
+		if event.is_pressed():
+
+			# Record initial touch position
+			swipe_start = event.position
+
+			# Record initial touch time
+			tap_start_time = Time.get_ticks_msec() / 1000.0
+
+		# [touch] screen just _released_
+		else:
+
+			# Record final touch position
+			var swipe_end = event.position
+
+			# Calculate the differece from start and end positions
+			swipe_delta = swipe_end - swipe_start
+
+			# Calculate the difference from start and end times
+			tap_duration = Time.get_ticks_msec() / 1000.0 - tap_start_time
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -57,8 +92,8 @@ func _process(_delta: float) -> void:
 		var center = screen_size * 0.5
 
 		# Set the position of the pause menu to the center of the screen (instead of the player camera)
-		$Camera2D/Pause.position.x = max($"./.."/Player2D.position.x, center.x)
-		$Camera2D/Pause.position.y =  center.y - ($Camera2D/Pause.size.y * 0.5)
+		$Camera2D/Pause.position.x = max($"./.." / Player2D.position.x, center.x)
+		$Camera2D/Pause.position.y = center.y - ($Camera2D/Pause.size.y * 0.5)
 
 
 ## Manage the player's state; setting flags and playing animations.
@@ -68,11 +103,23 @@ func mangage_state() -> void:
 	if is_on_floor():
 
 		# Reset the jumping flags
+		var jump = false
 		is_jumping = false
 		is_high_jumping = false
 
+		# Check if not swiping
+		if swipe_delta.length() < swipe_threshold:
+			# Check if the tap duration is under the threshold
+			if tap_duration < tap_time_threshold:
+				# Get the current time
+				var time_now = Time.get_ticks_msec() / 1000.0
+				# Check if the tap start is under the threshold
+				if time_now < tap_start_time + tap_time_threshold:
+					# Set the tap to "jump" flag
+					jump = true
+
 		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") or jump:
 			# Set the "jump timer" to the current game time
 			timer_jump = Time.get_ticks_msec()
 			# Flag the player as "jumping"

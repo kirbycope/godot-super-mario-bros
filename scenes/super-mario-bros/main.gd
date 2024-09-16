@@ -53,9 +53,9 @@ func _input(event: InputEvent) -> void:
 			var swipe_delta = swipe_end - swipe_start
 			# Calculate the difference from start and end times
 			var tap_duration = Time.get_ticks_msec() / 1000.0 - tap_start_time
-			# Check if the touch events were close together
+			# [tap] touch just _released_
 			if swipe_delta.length() < swipe_threshold and tap_duration < tap_time_threshold:
-				# [tap] touch just _released_
+				# Start the game
 				start()
 			# TODO: Move player selection
 			elif abs(swipe_delta.y) > abs(swipe_delta.x):
