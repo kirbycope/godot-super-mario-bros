@@ -3,18 +3,24 @@ extends CharacterBody2D
 var is_jumping: bool = false
 var is_high_jumping: bool = false
 var jump_timer: float = 0.0
-
 var swipe_drag_delta = null
 var swipe_event_index = null
 var swipe_initial_position = null
 var tap_event_index = null
 var tap_initial_position = null
 
-
 # Note: `@export` variables are available for editing in the property editor.
 @export var high_jump_velocity = -300.0
 @export var jump_velocity = -240.0
 @export var speed = 100.0
+
+
+## Called when CanvasItem has been requested to redraw (after queue_redraw is called, either manually or by the engine).
+func _draw() -> void:
+	if swipe_event_index != null:
+		var mouse = get_global_mouse_position()
+		var local = to_local(mouse)
+		draw_circle(local, 20, Color(0.502, 0.502, 0.502, 0.5))
 
 
 ## Called when the node leaves the scene tree.
@@ -81,6 +87,9 @@ func _input(event: InputEvent) -> void:
 			# Record drag direction based on the relative movement
 			swipe_drag_delta = event.relative
 
+	# Redraw canvas items via `_draw()`
+	queue_redraw()
+
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -137,7 +146,7 @@ func mangage_state() -> void:
 		is_high_jumping = false
 
 		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump") or tap_event_index != null:
+		if Input.is_action_just_pressed("jump"):
 			# Set the "jump timer" to the current game time
 			jump_timer = Time.get_ticks_msec()
 			# Flag the player as "jumping"
@@ -151,7 +160,7 @@ func mangage_state() -> void:
 	else:
 
 		# [jump] button currently _pressed_ (and not already "high jumping")
-		if Input.is_action_pressed("jump") and !is_high_jumping:
+		if (Input.is_action_pressed("jump") and !is_high_jumping) or tap_event_index != null:
 			# Get the current game time
 			var time_now = Time.get_ticks_msec()
 			# Check if _this_ button press is within 120 milliseconds
