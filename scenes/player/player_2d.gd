@@ -146,7 +146,7 @@ func mangage_state() -> void:
 		is_high_jumping = false
 
 		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") or tap_event_index != null:
 			# Set the "jump timer" to the current game time
 			jump_timer = Time.get_ticks_msec()
 			# Flag the player as "jumping"
@@ -160,7 +160,7 @@ func mangage_state() -> void:
 	else:
 
 		# [jump] button currently _pressed_ (and not already "high jumping")
-		if (Input.is_action_pressed("jump") and !is_high_jumping) or tap_event_index != null:
+		if Input.is_action_pressed("jump") and !is_high_jumping:
 			# Get the current game time
 			var time_now = Time.get_ticks_msec()
 			# Check if _this_ button press is within 120 milliseconds
