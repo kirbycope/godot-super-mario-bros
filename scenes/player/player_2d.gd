@@ -1,15 +1,14 @@
 extends CharacterBody2D
 
-var drag_delta: Vector2 = Vector2(0.0, 0.0)
 var is_jumping: bool = false
 var is_high_jumping: bool = false
-var swipe_delta: Vector2 = Vector2(0.0, 0.0)
-var swipe_start: Vector2 = Vector2(0.0, 0.0)
-var swipe_threshold: float = 50.0
-var tap_duration: float = 0.0
-var tap_time_threshold: float = 0.3
-var tap_start_time: float = 0.0
-var timer_jump: float = 0.0
+var jump_timer: float = 0.0
+
+var swipe_drag_delta = null
+var swipe_event_index = null
+var swipe_initial_position = null
+var tap_event_index = null
+var tap_initial_position = null
 
 
 # Note: `@export` variables are available for editing in the property editor.
@@ -34,35 +33,53 @@ func _input(event: InputEvent) -> void:
 		# [touch] screen just _pressed_
 		if event.is_pressed():
 
-			# Record initial touch position
-			swipe_start = event.position
+			# Check if the touch event took place on the left-half of the screen and the event has not been recorded
+			if event.position.x < get_viewport().get_visible_rect().size.x / 2 and !swipe_event_index:
 
-			# Record initial touch time
-			tap_start_time = Time.get_ticks_msec() / 1000.0
+				# Record the touch event index
+				swipe_event_index = event.index
+
+				# Record inital position
+				swipe_initial_position = event.position
+
+			# The touch event must have took place on the right-half of the screen
+			else:
+
+				# Record the touch event index
+				tap_event_index = event.index
+
+				# Record inital position
+				tap_initial_position = event.position
 
 		# [touch] screen just _released_
 		else:
 
-			# Reset drag delta
-			drag_delta = Vector2(0.0, 0.0)
+			# Check if the event is related to the swipe event
+			if event.index == swipe_event_index:
 
-			# Record final touch position
-			var swipe_end = event.position
+				# Reset swipe position
+				swipe_initial_position = null
 
-			# Calculate the differece from start and end positions
-			swipe_delta = swipe_end - swipe_start
+				# Reset swipe index
+				swipe_event_index = null
 
-			# Calculate the difference from start and end times
-			tap_duration = Time.get_ticks_msec() / 1000.0 - tap_start_time
+			# The touch event must be related to the tap event
+			if event.index == tap_event_index:
+
+				# Reset tap position
+				tap_initial_position = null
+
+				# Reset tap index
+				tap_event_index = null
 
 	# Check if the input is a Drag event
 	if event is InputEventScreenDrag:
 
-		# Only proceed if the touch started on the left half of the screen
-		if swipe_start.x < get_viewport().get_visible_rect().size.x / 2:
+		# Check if the event is related to the swipe event
+		if event.index == swipe_event_index:
 
 			# Record drag direction based on the relative movement
-			drag_delta = event.relative
+			swipe_drag_delta = event.relative
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -116,27 +133,13 @@ func mangage_state() -> void:
 	if is_on_floor():
 
 		# Reset the jumping flags
-		var jump = false
 		is_jumping = false
 		is_high_jumping = false
 
-		# Check if not swiping
-		if swipe_delta.length() < swipe_threshold:
-			# Check if the tap duration is under the threshold
-			if tap_duration < tap_time_threshold:
-				# Check if swipe_start is on the right half of the screen
-				if swipe_start.x > get_viewport().get_visible_rect().size.x / 2:
-					# Get the current time
-					var time_now = Time.get_ticks_msec() / 1000.0
-					# Check if the tap start is under the threshold
-					if time_now < tap_start_time + tap_time_threshold:
-						# Set the tap to "jump" flag
-						jump = true
-
 		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump") or jump:
+		if Input.is_action_just_pressed("jump") or tap_event_index != null:
 			# Set the "jump timer" to the current game time
-			timer_jump = Time.get_ticks_msec()
+			jump_timer = Time.get_ticks_msec()
 			# Flag the player as "jumping"
 			is_jumping = true
 			# Set the player's vertical velocity
@@ -152,7 +155,7 @@ func mangage_state() -> void:
 			# Get the current game time
 			var time_now = Time.get_ticks_msec()
 			# Check if _this_ button press is within 120 milliseconds
-			if time_now - timer_jump > 120:
+			if time_now - jump_timer > 120:
 				# Flag the player as "high jumping"
 				is_high_jumping = true
 				# Set the player's vertical velocity
@@ -322,24 +325,18 @@ func setup_controls():
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
 
-	# Create variable to hold the direction the player is moving (-1 left, 0 middle , 1 right)
-	var direction: float
+	# Direction: -1 left, 0 middle , 1 right
+	var direction = null
 
-	# Check the direction of the drag
-	if drag_delta != Vector2(0.0, 0.0):
-		if abs(drag_delta.x) > abs(drag_delta.y):
-			if drag_delta.x > 0:
+	# Check the direction of the drag event
+	if swipe_drag_delta and swipe_event_index != null:
+		if abs(swipe_drag_delta.x) > abs(swipe_drag_delta.y):
+			if swipe_drag_delta.x > 0:
 				direction = 1
 			else:
 				direction = -1
-		else:
-			direction = 0
-			#if drag_delta.y > 0:
-			#	print("down")
-			#else:
-			#	print("up")
 
-	# Check is the direction is not yet set
+	# Check if the direction is not already set
 	if !direction:
 
 		# Get the input direction and handle the movement/deceleration.
