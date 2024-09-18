@@ -3,11 +3,6 @@ extends CharacterBody2D
 var is_jumping: bool = false
 var is_high_jumping: bool = false
 var jump_timer: float = 0.0
-var swipe_drag_delta = null
-var swipe_event_index = null
-var swipe_initial_position = null
-var tap_event_index = null
-var tap_initial_position = null
 
 # Note: `@export` variables are available for editing in the property editor.
 @export var high_jump_velocity = -300.0
@@ -15,80 +10,11 @@ var tap_initial_position = null
 @export var speed = 100.0
 
 
-## Called when CanvasItem has been requested to redraw (after queue_redraw is called, either manually or by the engine).
-func _draw() -> void:
-	if swipe_event_index != null:
-		var mouse = get_global_mouse_position()
-		var local = to_local(mouse)
-		draw_circle(local, 20, Color(0.502, 0.502, 0.502, 0.5))
-
-
 ## Called when the node leaves the scene tree.
 func _exit_tree() -> void:
 
 	# [DEBUG] Message
 	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
-
-
-## Called when there is an input event. The input event propagates up through the node tree until a node consumes it.
-func _input(event: InputEvent) -> void:
-
-	# Check if the input is a Touch event
-	if event is InputEventScreenTouch:
-
-		# [touch] screen just _pressed_
-		if event.is_pressed():
-
-			# Check if the touch event took place on the left-half of the screen and the event has not been recorded
-			if event.position.x < get_viewport().get_visible_rect().size.x / 2 and !swipe_event_index:
-
-				# Record the touch event index
-				swipe_event_index = event.index
-
-				# Record inital position
-				swipe_initial_position = event.position
-
-			# The touch event must have took place on the right-half of the screen
-			else:
-
-				# Record the touch event index
-				tap_event_index = event.index
-
-				# Record inital position
-				tap_initial_position = event.position
-
-		# [touch] screen just _released_
-		else:
-
-			# Check if the event is related to the swipe event
-			if event.index == swipe_event_index:
-
-				# Reset swipe position
-				swipe_initial_position = null
-
-				# Reset swipe index
-				swipe_event_index = null
-
-			# The touch event must be related to the tap event
-			if event.index == tap_event_index:
-
-				# Reset tap position
-				tap_initial_position = null
-
-				# Reset tap index
-				tap_event_index = null
-
-	# Check if the input is a Drag event
-	if event is InputEventScreenDrag:
-
-		# Check if the event is related to the swipe event
-		if event.index == swipe_event_index:
-
-			# Record drag direction based on the relative movement
-			swipe_drag_delta = event.relative
-
-	# Redraw canvas items via `_draw()`
-	queue_redraw()
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -146,7 +72,7 @@ func mangage_state() -> void:
 		is_high_jumping = false
 
 		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump") or tap_event_index != null:
+		if Input.is_action_just_pressed("jump"):
 			# Set the "jump timer" to the current game time
 			jump_timer = Time.get_ticks_msec()
 			# Flag the player as "jumping"
@@ -334,23 +260,9 @@ func setup_controls():
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
 
-	# Direction: -1 left, 0 middle , 1 right
-	var direction = null
+	# Get the input direction and handle the movement/deceleration.
+	var direction = Input.get_axis("move_left", "move_right") # -1 left, 0 middle , 1 right
 
-	# Check the direction of the drag event
-	if swipe_drag_delta and swipe_event_index != null:
-		if abs(swipe_drag_delta.x) > abs(swipe_drag_delta.y):
-			if swipe_drag_delta.x > 0:
-				direction = 1
-			else:
-				direction = -1
-
-	# Check if the direction is not already set
-	if !direction:
-
-		# Get the input direction and handle the movement/deceleration.
-		direction = Input.get_axis("move_left", "move_right")
-	
 	# Check if the move direction is set
 	if direction:
 		velocity.x = direction * speed
