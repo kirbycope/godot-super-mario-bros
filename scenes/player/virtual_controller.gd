@@ -84,6 +84,9 @@ func _input(event: InputEvent) -> void:
 				# Reset swipe index
 				swipe_event_index = null
 
+				# Trigger the [move_down] action _released_
+				Input.action_release("move_down")
+
 				# Trigger the [move_left] action _released_
 				Input.action_release("move_left")
 
@@ -92,9 +95,6 @@ func _input(event: InputEvent) -> void:
 
 				# Trigger the [move_up] action _released_
 				Input.action_release("move_up")
-
-				# Trigger the [move_down] action _released_
-				Input.action_release("move_down")
 
 			# The touch event must be related to the tap event
 			if event.index == tap_event_index:
@@ -132,13 +132,11 @@ func _input(event: InputEvent) -> void:
 
 			# Trigger the [move_up] action _pressed_
 			if swipe_delta.y < SWIPE_DEADZONE:
-
 				Input.action_release("move_down")
 				Input.action_press("move_up")
 
 			# Trigger the [move_down] action _pressed_
 			if swipe_delta.y > SWIPE_DEADZONE:
-
 				Input.action_release("move_up")
 				Input.action_press("move_down")
 
