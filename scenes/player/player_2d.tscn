@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgd3bbjgloxjh"]
+[gd_scene load_steps=17 format=3 uid="uid://cgd3bbjgloxjh"]
 
 [ext_resource type="Script" path="res://scenes/player/player_2d.gd" id="1_mb1lt"]
 [ext_resource type="Texture2D" uid="uid://67fs3jyxaq2o" path="res://assets/textures/smb/mario-small.png" id="2_wqrp4"]
+[ext_resource type="Script" path="res://scenes/player/virtual_controller.gd" id="3_y32d6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgyao"]
 size = Vector2(16, 32)
@@ -129,3 +130,8 @@ zoom = Vector2(3, 3)
 limit_left = 0
 limit_top = 0
 limit_bottom = 128
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VirtualController" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("3_y32d6")

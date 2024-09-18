@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAX_DISTANCE := 64
+const MAX_DISTANCE := 48
 const SWIPE_DEADZONE := 8
 
 var swipe_current_position = null
@@ -17,11 +17,11 @@ func _draw() -> void:
 	# Check if there is a swipe event
 	if swipe_event_index != null:
 
-		# Get the zoom level of the camera
-		var camera_zoom = get_parent().get_node("Player2D").get_node("Camera2D").zoom
+		# Define the position to draw the gray circle
+		var draw_position_gray =  swipe_initial_position
 
 		# Draw a gray circle at the event origin
-		draw_circle(swipe_initial_position / camera_zoom, 20, Color(0.502, 0.502, 0.502, 0.5))
+		draw_circle(draw_position_gray, 48, Color(0.502, 0.502, 0.502, 0.5))
 
 		# Check if for drag motion
 		if swipe_current_position != null:
@@ -33,10 +33,10 @@ func _draw() -> void:
 				swipe_delta = swipe_delta.normalized() * MAX_DISTANCE
 
 			# Define the position to draw the white circle
-			var draw_position = swipe_initial_position + swipe_delta
+			var draw_position_white = swipe_initial_position + swipe_delta
 
 			# Draw a white circle at the event location
-			draw_circle(draw_position / camera_zoom, 15, Color(1.0, 1.0, 1.0, 0.5))
+			draw_circle(draw_position_white, 32, Color(1.0, 1.0, 1.0, 0.5))
 
 
 ## Called when there is an input event. The input event propagates up through the node tree until a node consumes it.
@@ -90,6 +90,12 @@ func _input(event: InputEvent) -> void:
 				# Trigger the [move_right] action _released_
 				Input.action_release("move_right")
 
+				# Trigger the [move_up] action _released_
+				Input.action_release("move_up")
+
+				# Trigger the [move_down] action _released_
+				Input.action_release("move_down")
+
 			# The touch event must be related to the tap event
 			if event.index == tap_event_index:
 
@@ -119,10 +125,29 @@ func _input(event: InputEvent) -> void:
 				Input.action_release("move_right")
 				Input.action_press("move_left")
 
-			# Trigger the [move_left] action _pressed_
+			# Trigger the [move_right] action _pressed_
 			if swipe_delta.x > SWIPE_DEADZONE:
 				Input.action_release("move_left")
 				Input.action_press("move_right")
 
+			# Trigger the [move_up] action _pressed_
+			if swipe_delta.y < SWIPE_DEADZONE:
+
+				Input.action_release("move_down")
+				Input.action_press("move_up")
+
+			# Trigger the [move_down] action _pressed_
+			if swipe_delta.y > SWIPE_DEADZONE:
+
+				Input.action_release("move_up")
+				Input.action_press("move_down")
+
 	# Redraw canvas items via `_draw()`
 	queue_redraw()
+
+
+## Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+
+	# This CanvasItem will not inherit its transform from parent CanvasItems. 
+	top_level = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cyh4p4sg00gfk"]
+[gd_scene load_steps=21 format=4 uid="uid://cyh4p4sg00gfk"]
 
 [ext_resource type="Script" path="res://scenes/super-mario-bros/w1l1.gd" id="1_a30jt"]
 [ext_resource type="Texture2D" uid="uid://ct3jxgpe72fcy" path="res://assets/textures/smb/overworld-ground-and-stone.png" id="1_f5sq8"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://v2fyqwwybi2w" path="res://scenes/super-mario-bros/warp_pipe_a.tscn" id="9_uaif8"]
 [ext_resource type="PackedScene" uid="uid://boybltwu37f53" path="res://scenes/super-mario-bros/warp_pipe_b.tscn" id="11_lr1dj"]
 [ext_resource type="PackedScene" uid="uid://cj4k7alcqgyv8" path="res://scenes/super-mario-bros/goomba.tscn" id="12_r4vnb"]
-[ext_resource type="Script" path="res://scenes/player/virtual_controller.gd" id="14_723sp"]
 [ext_resource type="PackedScene" uid="uid://dfn5teb5f4sqb" path="res://scenes/super-mario-bros/block.tscn" id="14_f7e1s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u30iw"]
@@ -483,6 +482,3 @@ position = Vector2(248, 376)
 
 [node name="WarpPipeB" parent="Underground" instance=ExtResource("11_lr1dj")]
 position = Vector2(284, 432)
-
-[node name="VirtualController" type="Node2D" parent="."]
-script = ExtResource("14_723sp")
