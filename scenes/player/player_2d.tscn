@@ -116,6 +116,11 @@ animations = [{
 texture_filter = 1
 script = ExtResource("1_mb1lt")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VirtualController" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("3_y32d6")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_vgyao")
@@ -130,8 +135,3 @@ zoom = Vector2(3, 3)
 limit_left = 0
 limit_top = 0
 limit_bottom = 128
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="VirtualController" type="Node2D" parent="CanvasLayer"]
-script = ExtResource("3_y32d6")
