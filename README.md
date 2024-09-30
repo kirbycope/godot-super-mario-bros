@@ -3,6 +3,20 @@
 # godot-super-mario-bros
 A remake of Super Mario Bros. using the Godot Game Engine.
 
+## Project Setup
+This project serves as an example of how to join a few concepts I have been working on; Addons, Game Packs, and Compatability Builds.
+
+### Addons
+This project uses the [godot-2d-player-controller](https://github.com/kirbycope/godot-2d-player-controller). That addon requires an auto-load, [Globals.gd](https://github.com/kirbycope/godot-2d-player-controller/blob/main/scenes/globals.gd).
+
+### Installing the Addon
+1. Download [install-2d-player-controller.sh](ci/install-3d-player-controller.sh)
+1. Move the file to a folder names `ci` in your project
+1. Open your project in VS Code
+1. Open the "Git Bash" terminal
+1. Run `bash ci/install-addons.sh`
+    - This script will download the [2d_player_controller](/addons/3d_player_controller) folder from _this_ repo and then cleanup the `.git` files/folders.
+
 ## Game Pack
 This game can be [exported](https://docs.godotengine.org/en/stable/tutorials/export/exporting_pcks.html#generating-pck-files) as a `.pck` and [imported](https://docs.godotengine.org/en/stable/tutorials/export/exporting_pcks.html#opening-pck-files-at-runtime) into another Godot game client. Download the [pack](ci\godot-super-mario-bros.pck).
 
@@ -15,11 +29,11 @@ This game can be [exported](https://docs.godotengine.org/en/stable/tutorials/exp
 1. Change the type to "Godot Project Pack (*.pck)"
 1. Select "Save"
 
-### Export Game as Pack Using PowerShell
+### Export Game as Pack Using Bash
 1. Open the root folder using [VS Code](https://code.visualstudio.com/)
     - If you use GitHub Desktop, select the "Open in Visual Studio" button
-1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal)
-1. Run the following command, `. ".\ci\export-pack.ps1"`
+1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal) using the "Git Bash" profile
+1. Run the following command, `bash ci/export-pack.sh`
 
 ## Web Host
 This game can be hosted on GitHub Pages. Play it at [timothycope.com/godot-super-mario-bros/](https://timothycope.com/godot-super-mario-bros/).
