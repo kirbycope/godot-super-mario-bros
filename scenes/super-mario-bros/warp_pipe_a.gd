@@ -21,11 +21,11 @@ func _input(event: InputEvent) -> void:
 
 # Function to handle going down the pipe
 func go_down_pipe():
-	$"../../Player2D".position.x = 120
-	$"../../Player2D".position.y = 256
-	$"../../Player2D/Camera2D".limit_top = 240
-	$"../../Player2D/Camera2D".limit_right = 424
-	$"../../Player2D/Camera2D".limit_bottom = 328
+	$"../../Player".position.x = 120
+	$"../../Player".position.y = 256
+	$"../../Player/Camera2D".limit_top = 240
+	$"../../Player/Camera2D".limit_right = 424
+	$"../../Player/Camera2D".limit_bottom = 328
 	# Play sound effect
 	Globals.play_audio("res://assets/sounds/smb/Warp.wav")
 	# Play "Underground" music
