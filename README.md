@@ -1,7 +1,7 @@
 ![Thumbnail](/ci/thumbnail.png)
 
 # godot-super-mario-bros
-Super Mario Bros. (NES, 1995) made using the Godot game engine.
+The first level of Super Mario Bros. (NES, 1995) made using the Godot game engine.
 
 ## Project Setup
 This project serves as an example of how to join a few concepts I have been working on; [Addons](https://docs.godotengine.org/en/stable/tutorials/plugins/index.html), [Game Packs](https://docs.godotengine.org/en/stable/tutorials/export/exporting_pcks.html), and [Compatability Builds](https://docs.godotengine.org/en/stable/contributing/development/core_and_modules/internal_rendering_architecture.html#compatibility).
